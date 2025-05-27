@@ -8,11 +8,14 @@ import { collection, deleteDoc, doc, getDocs, getFirestore, updateDoc } from '@r
 import { getAuth } from '@react-native-firebase/auth';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { getHabitProgress } from './AsynHelper';
+import WeekSlider from './Weekslider';
 
 const Home = ({ navigation }) => {
   const [person, setperson] = useState("")
   const [Item, setItem] = useState([])
   const { currentheme } = useContext(Themecontext)
+  const [filteredHabits, setFilteredHabits] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().slice(0, 10));
 
   const db = getFirestore()
   const currentUser = getAuth().currentUser;
@@ -82,6 +85,12 @@ const Home = ({ navigation }) => {
 
     setItem(updatedHabits); 
   };
+
+const filteredData = Item.filter(note => note.createdAt === selectedDate);
+
+console.log("Filtered Notes:", filteredData);
+
+console.log("filterdata======>",filteredData)
   const rendering = ({ item, index }) => {
 
     return (
@@ -142,7 +151,10 @@ const Home = ({ navigation }) => {
             {`${person} 👋`}
           </Text>
         </View>
+        <View style={{marginTop:10}}>
+      <WeekSlider onDateSelect={(date) => setSelectedDate(date)} />
 
+        </View>
       {Item.length > 0 ? (
         <View style={{ flex: 1 }}>
           <View style={{ margin: 17, marginBottom: 10 }}><Text style={{
@@ -151,7 +163,7 @@ const Home = ({ navigation }) => {
 
           }}>Goals</Text></View>
           <FlatList
-            data={Item}
+            data={filteredData}
             keyExtractor={(item) => item.id}
             renderItem={rendering}
             numColumns={2}
