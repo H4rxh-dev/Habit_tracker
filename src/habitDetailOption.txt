@@ -1,0 +1,11 @@
+const habitDetailsOptions = {
+  exercise: ['15 min', '30 min', '45 min', '1hr', '2 hr'],
+  read_book: ['15 min', '30 min', '1 hr', '2 hr', '3 hr'],
+  drink_water: null,
+  wake_up_early: ['5:00 AM', '5:30 AM', '6:00 AM', '6:30 AM', '7:00 AM', '7:30 AM', '8:00 AM'],
+  sleep_on_time: ['9:00 PM', '9:30 PM', '10:00 PM', '10:30 PM', '11:30 PM'],
+  no_junk_food: ['Full Day', '1 Meal Only', 'No Snacks'],
+  daily_walk: ['50 steps a day', '100 steps a day', '200 steps a day', '1000 steps a day', '2000 steps a day', '3000 steps a day'],
+  meditate: ['5 min', '15 min', '30 min', '1 hr'],
+  limit_phone: ['30 min', '1 hr', '2 hr', 'whole day'],
+};

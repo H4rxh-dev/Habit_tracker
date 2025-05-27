@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "94390315720",
+    "project_id": "habittracker-cf918",
+    "storage_bucket": "habittracker-cf918.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:94390315720:android:f97f7b8390cad2806793fd",
+        "android_client_info": {
+          "package_name": "com.trackmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "94390315720-3cl5ke7ll8rvo8k5spbjoallphkcm49k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.trackmate",
+            "certificate_hash": "3e9af0a4abf0dd27a069fb13b744ac2c429a8ebf"
+          }
+        },
+        {
+          "client_id": "94390315720-k691tutan96pohqeprge012egnjm62ab.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKkimBbTssNSVLshzfsCDH6WdsmfaW1zc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "94390315720-k691tutan96pohqeprge012egnjm62ab.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
