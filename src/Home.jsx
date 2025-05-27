@@ -86,7 +86,7 @@ const Home = ({ navigation }) => {
     setItem(updatedHabits); 
   };
 
-const filteredData = Item.filter(note => note.createdAt === selectedDate);
+const filteredData = Item.filter(note => note.createdAt <= selectedDate);
 
 console.log("Filtered Notes:", filteredData);
 
