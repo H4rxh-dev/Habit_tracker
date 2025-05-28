@@ -86,11 +86,70 @@ const Home = ({ navigation }) => {
     setItem(updatedHabits); 
   };
 
-const filteredData = Item.filter(note => note.createdAt <= selectedDate);
+ 
+useEffect(() => {
 
-console.log("Filtered Notes:", filteredData);
+  const datafetch=async()=>{
+    const today = new Date().toISOString().slice(0, 10);
+console.log("today",today)
 
-console.log("filterdata======>",filteredData)
+  const storedHabits = await AsyncStorage.getItem("New");
+          const habits = storedHabits ? JSON.parse(storedHabits) : [];
+
+
+if (selectedDate === today) {
+
+      setFilteredHabits(habits)
+    } else {
+      const filtered = habits(habit => habit.createdAt === selectedDate);
+      setFilteredHabits(filtered);
+    }
+    
+  }
+  datafetch()
+  }, [selectedDate]);
+
+
+
+useEffect(() => {
+  const today = new Date().toISOString().slice(0, 10);
+  
+  if (selectedDate === today) {
+    setFilteredHabits(Item);
+  } else {
+    const filtered = Item.filter(habit => habit.createdAt.slice(0, 10) === selectedDate);
+    setFilteredHabits(filtered);
+  }
+}, [selectedDate, Item]);
+
+
+
+
+
+
+// const filteredData = Item.filter(note => {
+//   return note.createdAt <= selectedDate;
+// });
+// const getLocalDate = (dateStr) => {
+//   const d = new Date(dateStr);
+//   // Get local date components
+//   const year = d.getFullYear();
+//   const month = (d.getMonth() + 1).toString().padStart(2, '0');
+//   const day = d.getDate().toString().padStart(2, '0');
+//   return `${year}-${month}-${day}`;  // YYYY-MM-DD in local time
+// };
+
+// const selectedDateLocal = getLocalDate(selectedDate);
+// console.log("Selecteddate====>",selectedDate)
+// const filteredData = selectedDate === selectedDate
+//   ? Item 
+//   : Item.filter(habit => habit.createdAt === selectedDate);
+
+console.log("selecteddate====>",selectedDate)
+
+console.log("filteredata====>",filteredHabits)
+
+// console.log("filterdata======>",filteredData)
   const rendering = ({ item, index }) => {
 
     return (
@@ -151,10 +210,6 @@ console.log("filterdata======>",filteredData)
             {`${person} 👋`}
           </Text>
         </View>
-        <View style={{marginTop:10}}>
-      <WeekSlider onDateSelect={(date) => setSelectedDate(date)} />
-
-        </View>
       {Item.length > 0 ? (
         <View style={{ flex: 1 }}>
           <View style={{ margin: 17, marginBottom: 10 }}><Text style={{
@@ -163,12 +218,20 @@ console.log("filterdata======>",filteredData)
 
           }}>Goals</Text></View>
           <FlatList
-            data={filteredData}
+            data={filteredHabits}
             keyExtractor={(item) => item.id}
             renderItem={rendering}
             numColumns={2}
             columnWrapperStyle={styles.contain}
             showsVerticalScrollIndicator={false} // <---- add this prop to hide the scroll bar
+style={{flex:1}}
+ListHeaderComponent={() => (
+    <View style={{ marginTop: 10 }}>
+      <WeekSlider onDateSelect={(date) => setSelectedDate(date)} />
+    </View>
+  )}
+
+
 
           />
 
